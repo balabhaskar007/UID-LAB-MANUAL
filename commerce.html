@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CircuitMart - Grid Layout</title>
+    
+    <style>
+        h2{
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;color: #3498db ;
+        }
+        h4{
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+        font-style: italic;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f9;
+            color: white;
+        }
+
+        /* --- 1. Main Page Grid Layout --- */
+        /* This grid controls the Header, Sidebar, Main Content, and Footer */
+        .page-layout {
+            display: grid;
+            /* Creates two columns: 250px for the sidebar, and 1fr (the rest of the space) for the main content */
+            grid-template-columns: 250px 1fr; 
+            min-height: 100vh; /* Ensures the layout takes up the full screen height */
+        }
+header {
+    grid-column: 1 / -1; /* Spans across ALL columns from left to right */
+    text-align: center;
+    background-color: #3498db ; /* Changed to a dark background so white text is readable */
+    padding: 30px 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);    
+    letter-spacing: 2px;
+}
+
+        /* --- 2. Sidebar Layout --- */
+        .sidebar {
+            background-color:white;
+            color:  rgb(236, 182, 21);
+            padding: 20px;
+            display: flex;
+            flex-direction: column; /* Stacks the sidebar items vertically */
+        }
+
+        .sidebar h3 {
+            margin-bottom: 15px;
+            color:  rgb(236, 182, 21);
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            margin-bottom: 30px;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        .sidebar ul li a:hover {
+            color: white;
+        }
+
+        /* The "Excess Buttons" at the bottom of the sidebar */
+        .bottom-links {
+            margin-top: auto; /* Pushes these links to the very bottom of the sidebar */
+            border-top: 1px solid #7f8c8d;
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .bottom-links a {
+            background-color:#3498db ;
+            color:white;
+            text-decoration: none;
+            padding: 10px;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        .bottom-links a:hover {
+            background-color: #3498db;
+        }
+
+        /* --- Main Content Area --- */
+        main {
+            padding: 30px;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            backdrop-filter: blur;
+        }
+
+        main h2 {
+            margin-bottom: 20px;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            backdrop-filter: blur;
+        }
+
+        /* --- 3. Product Grid Layout --- */
+        /* This is a second grid just for the products inside the main area */
+        .product-grid {
+            display: grid;
+            /* This is a magic grid line: it automatically fits as many 200px columns as possible, and expands them to fill space */
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px; /* Space between product cards */
+        }
+
+        .product-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            backdrop-filter: blur;
+        }
+
+        .product-card img {
+            max-width: 100%;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .product-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .product-card .price {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .product-card button {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .product-card button:hover {
+            background-color: #2ecc71;
+        }
+
+        /* --- Footer --- */
+        footer {
+            grid-column: 1 / -1; /* Spans across all columns, just like the header */
+            background-color:white;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-layout">
+        
+        <header>
+            <h1 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;color: rgb(236, 182, 21);">THE VELVET TABLE</h1>
+            <p style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-style: italic;">~Delicate chaos wrapped in beauty</p>
+        </header>
+
+        <aside class="sidebar">
+            <h3>✦CATEGORIES</h3>
+            <ul>
+                <li><a href="#">Veg ◉</a></li>
+                <li><a href="#">Non-Veg ◉</a></li>
+                <li><a href="#">Desserts</a></li>
+                <li><a href="#">Soft-Drinks</a></li>
+            </ul>
+
+            <div class="bottom-links">
+                <a href="#">About Us</a>
+                <a href="#">Contact Us</a>
+            </div>
+        </aside>
+
+        <main>
+            <h2>AVAILABLE COMPONENTS</h2>
+            
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="https://cdn.tasteatlas.com/images/dishes/ceff65c140064d6285fc3814534a349b.jpg?w=1476&h=830" alt="Shahi Paneer">
+                    <h4>Shahi Paneer</h4>
+                    <p class="price">₹249</p>
+                    <button>Add to Cart</button>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://cdn.tasteatlas.com/images/dishes/7cd03979f70949c08f779a686919d7e3.jpg?w=1476&h=830" alt="Malai Kofta">
+                    <h4>Malai Kofta</h4>
+                    <p class="price">₹249</p>
+                    <button>Add to Cart</button>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://cdn.tasteatlas.com/images/dishes/617f5d93003c43a992244eff2dd52b6d.jpg?w=1476&h=830" alt="Dal Tadka">
+                    <h4>Dal Tadka</h4>
+                    <p class="price">₹199</p>
+                    <button>Add to Cart</button>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://cdn.tasteatlas.com/images/dishes/16dbebbff2e04e0d984f4ed83be93b97.jpg?w=1476&h=830" alt="Paneer Tikka">
+                    <h4>Paneer Tikka</h4>
+                    <p class="price">₹199</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 -the velvet table- E-Commerce ©️ </p>
+        </footer>
+
+    </div>
+
+</body>
+</html>

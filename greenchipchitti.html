@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Music Apps</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- 1. THE WEBFLOW NEON GREEN THEME --- */
+        body {
+            background-color: #ccff00; /* The striking premium Webflow green */
+            color: #000000; /* Black text for high contrast */
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            min-height: 100vh;
+            cursor: none; /* Hides the default computer mouse! */
+        }
+
+        /* --- 2. THE CUSTOM CIRCLE CURSOR --- */
+        .custom-cursor {
+            width: 30px;
+            height: 30px;
+            border: 2px solid #000000; /* Starts black to show up on the bright green */
+            border-radius: 50%; 
+            position: fixed; 
+            pointer-events: none; 
+            transform: translate(-50%, -50%); 
+            z-index: 9999; 
+            transition: width 0.2s, height 0.2s, background-color 0.2s, border-color 0.2s; 
+        }
+
+        /* --- 3. HEADINGS & DARK GLASS CARDS --- */
+        .mainheading {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 60px;
+            color: #000000; /* Black text so it pops against the green */
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap; 
+        }
+
+        .music-card {
+            /* Kept the dark theme but used rgba() and blur to maintain the glass effect! */
+            background-color: rgba(22, 22, 22, 0.9); 
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.15); 
+            border-radius: 12px; 
+            padding: 30px;
+            width: 320px; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease; 
+        }
+
+        .music-card:hover {
+            transform: translateY(-8px);
+            border-color: #ffffff; 
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3); /* Adds a soft shadow drop on hover */
+        }
+
+        .music-card h2 {
+            margin-top: 0;
+            font-size: 24px;
+            font-weight: 600;
+            color: #ffffff; /* White text inside the dark glass cards */
+        }
+
+        .music-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover; 
+            border-radius: 8px;
+            margin-bottom: 20px;
+            filter: grayscale(20%); 
+            transition: filter 0.4s ease;
+        }
+
+        .music-card:hover img {
+            filter: grayscale(0%); 
+        }
+
+        .music-card p {
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            color: #a0a0a0; 
+        }
+
+        button {
+            margin-top: auto; 
+            padding: 12px 35px;
+            border: 1px solid #ccff00; /* Green border to tie into the background */
+            border-radius: 50px; 
+            background-color: transparent; 
+            color: #ccff00; /* Green text */
+            font-weight: 400;
+            font-family: 'Poppins', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 12px;
+            cursor: none; 
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ccff00;
+            color: #000000; /* Inverts button text to black on hover */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="custom-cursor" id="cursor"></div>
+
+    <nav>
+        <h1 class="mainheading">INDIAN MUSIC</h1>
+    </nav>
+
+    <div class="card-container">
+        <article class="music-card">
+            <h2>Spotify</h2>
+            <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1974&auto=format&fit=crop" alt="Spotify Concept">
+            <p>Spotify is a popular digital music streaming service that allows users to listen to millions of songs, podcasts, and audio content online. Founded in 2006, it lets users create playlists and discover new music.</p>
+            <button>Know more</button>
+        </article>
+
+        <article class="music-card">
+            <h2>Gaana</h2>
+            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1974&auto=format&fit=crop" alt="Music Streaming">
+            <p>Gaana is an Indian music streaming platform that allows users to listen to millions of songs online. Launched in 2010, Gaana offers music in many languages including Hindi, Punjabi, Tamil, and Telugu.</p>
+            <button>Know more</button>
+        </article>
+
+        <article class="music-card">
+            <h2>JioSaavn</h2>
+            <img src="https://images.unsplash.com/photo-1614680376593-902f74cf0d41?q=80&w=1974&auto=format&fit=crop" alt="Headphones">
+            <p>JioSaavn is a popular Indian music streaming platform that offers a large collection of songs, podcasts, and radio shows. It provides ad-free listening and high audio quality for subscribers.</p>
+            <button>Know more</button>
+        </article>
+    </div>
+
+    <script>
+        const cursor = document.getElementById('cursor');
+
+        // 1. Make the circle follow the mouse
+        document.addEventListener('mousemove', function(e) {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // 2. Cursor logic for the dark glass cards
+        const cards = document.querySelectorAll('.music-card');
+        cards.forEach(card => {
+            // Turn cursor white when entering the dark card
+            card.addEventListener('mouseenter', () => {
+                cursor.style.borderColor = '#ffffff'; 
+            });
+            // Turn cursor back to black when going back to the green background
+            card.addEventListener('mouseleave', () => {
+                cursor.style.borderColor = '#000000'; 
+            });
+        });
+
+        // 3. Cursor logic for the buttons
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                cursor.style.width = '10px';
+                cursor.style.height = '10px';
+                cursor.style.backgroundColor = '#ccff00'; // Fills with green
+                cursor.style.borderColor = '#ccff00';
+            });
+            
+            button.addEventListener('mouseleave', () => {
+                cursor.style.width = '30px';
+                cursor.style.height = '30px';
+                cursor.style.backgroundColor = 'transparent';
+                cursor.style.borderColor = '#ffffff'; // Stays white because it's still inside the card
+            });
+        });
+    </script>
+
+</body>
+</html>
+
+<video autoplay loop muted playsinline class="bg-video">
+        <source src="your-music-video.mp4" type="video/mp4">
+    </video>
+
+    <div class="video-overlay"></div>

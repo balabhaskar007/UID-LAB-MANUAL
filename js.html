@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geetha Family Restaurant</title>
+
+<style>
+    :root {
+        --primary-color: #a81c1c; 
+        --bg-color: #fdfbf7; 
+        --text-main: #2c2c2c;
+        --text-muted: #666;
+        --border-color: #eaeaea;
+        --veg-color: #2e7d32;
+        --non-veg-color: #c62828;
+    }
+
+    /* Added a subtle global background image with a light overlay for readability */
+    body {
+        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color);
+        background-image: linear-gradient(rgba(253, 251, 247, 0.93), rgba(253, 251, 247, 0.93)), url("https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80");
+        background-attachment: fixed;
+        background-size: cover;
+        color: var(--text-main);
+        line-height: 1.6;
+    }
+
+    nav {
+        background-color: #fff;
+        padding: 15px 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    .brand-group h1 {
+        margin: 0;
+        font-size: 26px;
+        color: var(--primary-color);
+        letter-spacing: 1px;
+    }
+
+    .brand-group p {
+        margin: 0;
+        color: var(--text-muted);
+        font-weight: bold;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .nav-cta {
+        background-color: var(--primary-color);
+        color: white;
+        text-decoration: none;
+        padding: 12px 24px;
+        border-radius: 50px; /* Pill shape for elegance */
+        font-weight: bold;
+        font-size: 14px;
+        box-shadow: 0 4px 6px rgba(168, 28, 28, 0.2);
+    }
+
+    /* Hero Image - Text removed, image showcased clearly */
+    .hero {
+        background-image: url("Geetha.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 45vh;
+        min-height: 350px;
+        box-shadow: inset 0 -10px 20px rgba(0,0,0,0.1);
+    }
+
+    /* New Dedicated Welcome Section */
+    .welcome-note {
+        background: #fff;
+        max-width: 800px;
+        margin: -50px auto 40px auto;
+        padding: 40px;
+        text-align: center;
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        position: relative;
+        z-index: 10;
+        border-top: 4px solid var(--primary-color);
+    }
+
+    .welcome-note h2 {
+        font-size: 36px;
+        color: var(--primary-color);
+        margin: 0 0 10px 0;
+    }
+
+    .welcome-note p {
+        font-size: 18px;
+        color: var(--text-muted);
+        margin: 0;
+        font-style: italic;
+    }
+
+    .section-container {
+        max-width: 1000px;
+        margin: 60px auto;
+        padding: 0 20px;
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .section-header h2 {
+        font-size: 32px;
+        color: #222;
+        margin-bottom: 5px;
+    }
+
+    .section-header p {
+        color: var(--primary-color);
+        font-weight: bold;
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 14px;
+    }
+
+    /* Menu Grid */
+    .menu-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    @media (min-width: 768px) {
+        .menu-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+    }
+
+    .menu-item {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 25px;
+        border-radius: 8px;
+        border-left: 4px solid var(--primary-color);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    }
+
+    .menu-item-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 8px;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 10px;
+    }
+
+    .menu-item-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: var(--text-main);
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .tag {
+        font-size: 10px;
+        padding: 3px 8px;
+        border-radius: 12px;
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: normal;
+    }
+
+    .tag.veg { background-color: var(--veg-color); }
+    .tag.non-veg { background-color: var(--non-veg-color); }
+
+    .menu-item-price {
+        font-size: 20px;
+        font-weight: bold;
+        color: var(--primary-color);
+        margin: 0;
+    }
+
+    .menu-item-desc {
+        font-size: 15px;
+        color: var(--text-muted);
+        margin: 10px 0 0 0;
+    }
+
+    /* Contact Form Section */
+    .contact-wrapper {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 50px;
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    }
+
+    .form-group {
+        margin-bottom: 25px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        font-size: 14px;
+        color: #444;
+    }
+
+    .form-group input, 
+    .form-group textarea {
+        width: 100%;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-family: inherit;
+        font-size: 16px;
+        box-sizing: border-box;
+        background-color: #fafafa;
+    }
+
+    .form-group input:focus, 
+    .form-group textarea:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        background-color: #fff;
+    }
+
+    .submit-btn {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 18px 30px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 6px;
+        cursor: pointer;
+        width: 100%;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    /* Footer */
+    footer {
+        background: #1a1a1a;
+        background-image: linear-gradient(rgba(26, 26, 26, 0.95), rgba(26, 26, 26, 0.95)), url("https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1934&q=80");
+        background-size: cover;
+        background-position: center;
+        color: #eee;
+        padding: 60px 20px 20px 20px;
+        margin-top: 80px;
+    }
+
+    .footer-grid {
+        max-width: 1000px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    @media (min-width: 768px) {
+        .footer-grid {
+            grid-template-columns: 1fr 1fr 1fr;
+            text-align: left;
+        }
+    }
+
+    .footer-section h3 {
+        color: #fff;
+        margin-top: 0;
+        margin-bottom: 20px;
+        font-size: 20px;
+        border-bottom: 2px solid var(--primary-color);
+        padding-bottom: 10px;
+        display: inline-block;
+    }
+
+    .footer-section p {
+        margin: 8px 0;
+        font-size: 15px;
+        color: #bbb;
+    }
+
+    .copyright {
+        text-align: center;
+        border-top: 1px solid #333;
+        padding-top: 20px;
+        font-size: 13px;
+        color: #888;
+    }
+</style>
+
+</head>
+<body>
+
+<nav>
+    <div class="brand-group">
+        <h1>Geetha</h1>
+        <p>Family Restaurant</p>
+    </div>
+    <a href="tel:+918019108310" class="nav-cta">📞 Call to Order</a>
+</nav>
+
+<header class="hero"></header>
+
+<div class="welcome-note">
+    <h2>Experience the Taste of Tradition</h2>
+    <p>Authentic Recipes | Handpicked Ingredients | Unforgettable Flavors</p>
+</div>
+
+<main>
+    <section class="section-container">
+        <div class="section-header">
+            <h2>Our Signature Dishes</h2>
+            <p>Explore Our Menu</p>
+        </div>
+
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <h3 class="menu-item-title">Dum Biryani <span class="tag veg">Veg</span></h3>
+                    <p class="menu-item-price">₹180</p>
+                </div>
+                <p class="menu-item-desc">Spicy basmati rice with fresh seasonal vegetables and aromatic spices.</p>
+            </div>
+
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <h3 class="menu-item-title">Fried Piece Biryani <span class="tag non-veg">Non-Veg</span></h3>
+                    <p class="menu-item-price">₹220</p>
+                </div>
+                <p class="menu-item-desc">Special fried chicken mixed with seasoned aromatic rice, served hot.</p>
+            </div>
+
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <h3 class="menu-item-title">Chicken 65 <span class="tag non-veg">Non-Veg</span></h3>
+                    <p class="menu-item-price">₹150</p>
+                </div>
+                <p class="menu-item-desc">Crispy, spicy marinated chicken pieces tossed in traditional regional spices.</p>
+            </div>
+
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <h3 class="menu-item-title">Chicken Curry <span class="tag non-veg">Non-Veg</span></h3>
+                    <p class="menu-item-price">₹120</p>
+                </div>
+                <p class="menu-item-desc">Traditional Indian chicken curry cooked slowly to absolute perfection.</p>
+            </div>
+
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <h3 class="menu-item-title">Gulab Jamun <span class="tag veg">Veg</span></h3>
+                    <p class="menu-item-price">₹60</p>
+                </div>
+                <p class="menu-item-desc">Sweet, warm dessert dumplings soaked in rich cardamom sugar syrup.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container">
+        <div class="section-header">
+            <h2>Reserve Your Table</h2>
+            <p>Book Ahead or Ask About Catering</p>
+        </div>
+
+        <div class="contact-wrapper">
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="E.g., John Doe" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+91 00000 00000" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Reservation Details</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Date, time, and number of guests..." required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Send Request</button>
+            </form>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="footer-grid">
+        <div class="footer-section">
+            <h3>About Geetha</h3>
+            <p>Serving the best authentic flavors with fresh ingredients and a warm, welcoming atmosphere.</p>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Visit Us</h3>
+            <p>📍 Main Road Sattenapalli</p>
+            <p>📞 +91 8019108310</p>
+        </div>
+
+        <div class="footer-section">
+            <h3>Opening Hours</h3>
+            <p>Monday - Sunday</p>
+            <p>11:00 AM - 10:30 PM</p>
+        </div>
+    </div>
+    
+    <div class="copyright">
+        <p>© 2026 Geetha Family Restaurant. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>

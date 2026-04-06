@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML Flower</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #eaf7ea;
+        }
+
+        .flower {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+
+        .petal {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: rgb(236, 1, 41);
+            border-radius: 50%;
+        }
+
+        .petal1 { top: 0; left: 60px; }
+        .petal2 { top: 60px; left: 120px; }
+        .petal3 { top: 120px; left: 60px; }
+        .petal4 { top: 60px; left: 0; }
+
+        .center {
+            position: absolute;
+            top: 70px;
+            left: 70px;
+            width: 60px;
+            height: 60px;
+            background: rgb(252, 252, 245);
+            border-radius: 50%;
+        }
+
+        .stem {
+            position: absolute;
+            top: 200px;
+            left: 95px;
+            width: 10px;
+            height: 150px;
+            background: green;
+        }
+
+        .leaf {
+            position: absolute;
+            top: 260px;
+            left: 60px;
+            width: 60px;
+            height: 30px;
+            background: green;
+            border-radius: 0 50px;
+            transform: rotate(-20deg);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="flower" >
+        <div class="petal petal1"></div>
+        <div class="petal petal2"></div>
+        <div class="petal petal3"></div>
+        <div class="petal petal4"></div>
+        <div class="center"></div>
+        <div class="stem"></div>
+        <div class="leaf"></div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<html>
+<head>
+<title>Product Check</title>
+
+<script>
+function product(a, b, c)
+{
+    return a * b * c;
+}
+
+function checkSign()
+{
+    let p = parseInt(document.getElementById("p").value);
+    let q = parseInt(document.getElementById("q").value);
+    let r = parseInt(document.getElementById("r").value);
+
+    let result = product(p,q,r);
+
+    if(result >= 0)
+    {
+        alert("The sign is Positive: " + result);
+    }
+    else
+    {
+        alert("The sign is Negative: " + result);
+    }
+}
+</script>
+
+</head>
+
+<body>
+
+<h3>Enter Three Numbers</h3>
+
+Number 1: <input type="number" id="p"><br><br>
+Number 2: <input type="number" id="q"><br><br>
+Number 3: <input type="number" id="r"><br><br>
+
+<input type="button" value="Check Product Sign" onclick="checkSign()">
+
+</body>
+</html>

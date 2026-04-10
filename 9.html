@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>lab9</title>
+    <style>
+    button{
+        display: inline;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        align-content: center;
+        border:5px solid #ccc;
+        border-radius: 18px;
+        padding: 20px;
+        margin: 15px;
+        color: white;
+    }
+    </style>
+</head>
+<body>
+
+    <input type="number" id="numInput" placeholder="Enter a number" style="border: 5px;border-radius: 18px; padding: 20px; margin: 15px;display:inline;justify-content: center;align-items: center;background-color:#8B0037 ;box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.3);color: white;">
+    <br><br>
+
+    <button onclick="checkEven()">Check Even</button>
+    <button onclick="checkOdd()">Check Odd</button>
+    <button onclick="checkPrime()">Check Prime</button>
+    <button onclick="getFactorial()">Factorial</button>
+    <button onclick="checkArmstrong()">Check Armstrong</button>
+    
+    <br><br>
+    <div id="output"></div>
+
+    <script>
+        var display = document.getElementById("output");
+
+        // input calling with id
+        function getNumber() {
+            return Number(document.getElementById("numInput").value);
+        }
+
+        // 1. Check Even
+        function checkEven() {
+            var num = getNumber();
+            if (num % 2 == 0) {
+                display.innerHTML = num + " is Even.";
+            } else {
+                display.innerHTML = num + " is NOT Even.";
+            }
+        }
+
+        // 2. Check Odd
+        function checkOdd() {
+            var num = getNumber();
+            if (num % 2 != 0) {
+                display.innerHTML = num + " is Odd.";
+            } else {
+                display.innerHTML = num + " is NOT Odd.";
+            }
+        }
+
+        // 3. Check Prime
+        function checkPrime() {
+            var num = getNumber();
+            var isPrime = true;
+
+            if (num < 2) {
+                isPrime = false; // 0 and 1 are not prime
+            } else {
+                // Try dividing by every number up to the number itself
+                for (var i = 2; i < num; i++) {
+                    if (num % i == 0) {
+                        isPrime = false; // We found a match, so it's not prime
+                    }
+                }
+            }
+
+            if (isPrime == true) {
+                display.innerHTML = num + " is Prime.";
+            } else {
+                display.innerHTML = num + " is NOT Prime.";
+            }
+        }
+
+        // 4. Calculate Factorial
+        function getFactorial() {
+            var num = getNumber();
+            var answer = 1;
+            
+            for (var i = 1; i <= num; i++) {
+                answer = answer * i;
+            }
+            
+            display.innerHTML = "The Factorial is " + answer;
+        }
+
+        // 5. Check Armstrong
+        function checkArmstrong() {
+            var num = getNumber();
+            var textNum = num.toString();
+            var totalDigits = textNum.length;
+            var sum = 0;
+
+            for (var i = 0; i < totalDigits; i++) {
+                var singleDigit = Number(textNum[i]); 
+                sum = sum + Math.pow(singleDigit, totalDigits);
+            }
+
+            if (sum == num) {
+                display.innerHTML = num + " is an Armstrong Number.";
+            } else {
+                display.innerHTML = num + " is NOT an Armstrong Number.";
+            }
+        }
+    </script>
+
+</body>
+</html>

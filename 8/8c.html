@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>lab8c</title>
+<style>
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 850px;
+    margin: 0;
+    background-color: white;
+}
+
+.circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 5px dotted rgba(165, 165, 165, 1); 
+    
+    animation: 
+    moveho 2.5s ease-in-out infinite alternate,
+    spin 3s linear infinite alternate;
+}
+
+@keyframes moveho {
+    0% {
+    translate: -200px;
+    }
+    100%{
+    translate: 200px;
+    }
+}
+
+@keyframes spin {
+    0% {
+    rotate: 0deg;
+    }
+    100%{
+    rotate: 360deg;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="circle"></div>
+
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-card {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+            font-weight: 700;
+        }
+
+        .input-group {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #ff7e5f;
+            box-shadow: 0 0 10px rgba(255, 126, 95, 0.1);
+        }
+
+        input.invalid {
+            border-color: #ff4757;
+            background-color: #fff4f4;
+        }
+
+        .error-msg {
+            color: #ff4757;
+            font-size: 13px;
+            position: absolute;
+            bottom: -22px;
+            left: 5px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .error-msg.visible {
+            opacity: 1;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 126, 95, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .success-msg {
+            display: none;
+            text-align: center;
+            color: #2ed573;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-card">
+        <h2>Create Account</h2>
+        <form id="registrationForm" novalidate>
+            <div class="input-group">
+                <input type="text" id="fullName" placeholder="Full Name" required>
+            </div>
+            
+            <div class="input-group">
+                <input type="email" id="email" placeholder="Email Address" required>
+                <span class="error-msg" id="emailError">Please enter a valid email format.</span>
+            </div>
+
+            <button type="submit">Register</button>
+            <div class="success-msg" id="successMsg">Registration Successful!</div>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('registrationForm');
+        const emailInput = document.getElementById('email');
+        const emailError = document.getElementById('emailError');
+        const successMsg = document.getElementById('successMsg');
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            
+            emailInput.classList.remove('invalid');
+            emailError.classList.remove('visible');
+            successMsg.style.display = 'none';
+
+            const emailValue = emailInput.value.trim();
+
+            if (!emailRegex.test(emailValue)) {
+                emailInput.classList.add('invalid');
+                emailError.classList.add('visible');
+            } else {
+                successMsg.style.display = 'block';
+                // form.submit(); // Uncomment this to allow actual backend submission
+            }
+        });
+
+        emailInput.addEventListener('input', function() {
+            emailInput.classList.remove('invalid');
+            emailError.classList.remove('visible');
+            successMsg.style.display = 'none';
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Calculator</title>
+    <style>
+        body { 
+            font-family: sans-serif; 
+            max-width: 400px; 
+            margin: 40px auto; 
+            padding: 20px;
+            background-color: #f4f4f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h2 { text-align: center; }
+        .input-group {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+        input {
+            width: 60px;
+            padding: 5px;
+            font-size: 16px;
+        }
+        button { 
+            width: 100%;
+            padding: 10px; 
+            font-size: 16px; 
+            cursor: pointer; 
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        button:hover { background-color: #0056b3; }
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+            display: none; 
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Grade Calculator</h2>
+    
+    <div class="input-group">
+        <label>Subject 1:</label>
+        <input type="number" id="sub1" value="0" min="0" max="100">
+    </div>
+    <div class="input-group">
+        <label>Subject 2:</label>
+        <input type="number" id="sub2" value="0" min="0" max="100">
+    </div>
+    <div class="input-group">
+        <label>Subject 3:</label>
+        <input type="number" id="sub3" value="0" min="0" max="100">
+    </div>
+    <div class="input-group">
+        <label>Subject 4:</label>
+        <input type="number" id="sub4" value="0" min="0" max="100">
+    </div>
+    <div class="input-group">
+        <label>Subject 5:</label>
+        <input type="number" id="sub5" value="0" min="0" max="100">
+    </div>
+    <div class="input-group">
+        <label>Subject 6:</label>
+        <input type="number" id="sub6" value="0" min="0" max="100">
+    </div>
+
+    <button onclick="calculateGrade()">Calculate Average & Grade</button>
+
+    <div id="result"></div>
+
+    <script>
+        function calculateGrade() {
+            let m1 = parseFloat(document.getElementById("sub1").value);
+            let m2 = parseFloat(document.getElementById("sub2").value);
+            let m3 = parseFloat(document.getElementById("sub3").value);
+            let m4 = parseFloat(document.getElementById("sub4").value);
+            let m5 = parseFloat(document.getElementById("sub5").value);
+            let m6 = parseFloat(document.getElementById("sub6").value);
+
+            let totalMarks = m1 + m2 + m3 + m4 + m5 + m6;
+            let average = totalMarks / 6;
+
+            average = average.toFixed(2);
+
+            let grade = "";
+            if (average >= 90) {
+                grade = "A";
+            } else if (average >= 80) {
+                grade = "B";
+            } else if (average >= 70) {
+                grade = "C";
+            } else if (average >= 60) {
+                grade = "D";
+            } else {
+                grade = "F";
+            }
+
+            let resultBox = document.getElementById("result");
+            resultBox.style.display = "block"; 
+            resultBox.innerHTML = "Average Marks: " + average + "% <br><br> Final Grade: " + grade;
+        }
+    </script>
+
+</body>
+</html>

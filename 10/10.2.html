@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort 3 Numbers</title>
+    <style>
+        body { 
+            font-family: sans-serif; 
+            text-align: center; 
+            margin-top: 50px; 
+        }
+        button { 
+            padding: 10px 20px; 
+            font-size: 16px; 
+            cursor: pointer; 
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Sort Three Numbers</h2>
+    <p>Click the button below to sort the numbers <strong>42, 15, and 89</strong>.</p>
+    
+    <button onclick="runSort()">Sort Numbers</button>
+
+    <script>
+        
+        function sortThreeNumbers(num1, num2, num3) {
+            let numbers = [num1, num2, num3];
+            numbers.sort((a, b) => a - b);
+            alert("The sorted numbers are: " + numbers.join(", "));
+        }
+
+        
+        function runSort() {
+        
+            sortThreeNumbers(42, 15, 89);
+        }
+    </script>
+
+</body>
+</html>

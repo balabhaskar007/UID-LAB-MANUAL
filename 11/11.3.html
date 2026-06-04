@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Strength Checker</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .input-box {
+            position: relative;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            box-shadow: 0 0 8px rgba(0, 114, 255, 0.2);
+        }
+
+        .strength-bar {
+            height: 4px;
+            width: 0%;
+            background-color: transparent;
+            border-radius: 2px;
+            margin-top: 6px;
+            transition: width 0.4s ease, background-color 0.4s ease;
+        }
+
+        .strength-text {
+            display: block;
+            margin-top: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            min-height: 18px;
+            transition: color 0.3s ease;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #0072ff 0%, #00c6ff 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 114, 255, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Secure Password</h2>
+        
+        <div class="input-box">
+            <input type="password" id="passwordInput" placeholder="Enter password...">
+            <div class="strength-bar" id="strengthBar"></div>
+            <span id="strengthMessage" class="strength-text"></span>
+        </div>
+
+        <button>Save Password</button>
+    </div>
+
+    <script>
+        const passwordInput = document.getElementById('passwordInput');
+        const strengthMessage = document.getElementById('strengthMessage');
+        const strengthBar = document.getElementById('strengthBar');
+
+        passwordInput.addEventListener('input', () => {
+            const val = passwordInput.value;
+            
+            if (val.length === 0) {
+                strengthMessage.textContent = '';
+                strengthBar.style.width = '0%';
+                passwordInput.style.borderColor = '#e0e0e0';
+                return;
+            }
+
+            const hasMinLength = val.length >= 8;
+            const hasUpper = /[A-Z]/.test(val);
+            const hasLower = /[a-z]/.test(val);
+            const hasNumber = /\d/.test(val);
+
+            if (hasMinLength && hasUpper && hasLower && hasNumber) {
+                strengthMessage.textContent = 'Strong';
+                strengthMessage.style.color = '#2ecc71'; 
+                strengthBar.style.width = '100%';
+                strengthBar.style.backgroundColor = '#2ecc71';
+                passwordInput.style.borderColor = '#2ecc71';
+            } else if (val.length >= 5) {
+                strengthMessage.textContent = 'Medium';
+                strengthMessage.style.color = '#f39c12'; 
+                strengthBar.style.width = '50%';
+                strengthBar.style.backgroundColor = '#f39c12';
+                passwordInput.style.borderColor = '#f39c12';
+            } else {
+                strengthMessage.textContent = 'Weak';
+                strengthMessage.style.color = '#e74c3c'; 
+                strengthBar.style.width = '25%';
+                strengthBar.style.backgroundColor = '#e74c3c';
+                passwordInput.style.borderColor = '#e74c3c';
+            }
+        });
+    </script>
+
+</body>
+</html>

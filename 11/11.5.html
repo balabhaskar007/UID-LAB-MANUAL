@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Registration Form</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .form-card {
+            background-color: #ffffff;
+            padding: 40px 35px;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+            font-size: 24px;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 28px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            outline: none;
+            transition: all 0.3s ease;
+            background-color: #f8fafc;
+        }
+
+        input:focus {
+            background-color: #ffffff;
+            border-color: #f5576c;
+            box-shadow: 0 0 10px rgba(245, 87, 108, 0.15);
+        }
+
+        /* Validation Colors */
+        input.error-border {
+            border-color: #ef4444;
+            background-color: #fef2f2;
+        }
+
+        input.success-border {
+            border-color: #10b981;
+        }
+
+        .error-msg {
+            color: #ef4444;
+            font-size: 12px;
+            font-weight: 500;
+            position: absolute;
+            bottom: -20px;
+            left: 5px;
+            display: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(245, 87, 108, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .success-banner {
+            display: none;
+            background-color: #10b981;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-card">
+        <div class="success-banner" id="successBanner">Registration Successful!</div>
+        <h2>Create Account</h2>
+        
+        <form id="registerForm" novalidate>
+            <div class="input-group">
+                <input type="text" id="nameInput" placeholder="Full Name">
+                <span class="error-msg" id="nameError">Name cannot be empty</span>
+            </div>
+
+            <div class="input-group">
+                <input type="email" id="emailInput" placeholder="Email Address">
+                <span class="error-msg" id="emailError">Please enter a valid email</span>
+            </div>
+
+            <div class="input-group">
+                <input type="password" id="passwordInput" placeholder="Password (Min 6 characters)">
+                <span class="error-msg" id="passError">Password must be at least 6 characters</span>
+            </div>
+
+            <button type="submit" class="submit-btn">Register</button>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('registerForm');
+        const successBanner = document.getElementById('successBanner');
+
+        
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        
+        function setStatus(inputElement, errorElement, isError) {
+            if (isError) {
+                inputElement.classList.add('error-border');
+                inputElement.classList.remove('success-border');
+                errorElement.style.display = 'block';
+            } else {
+                inputElement.classList.remove('error-border');
+                inputElement.classList.add('success-border');
+                errorElement.style.display = 'none';
+            }
+        }
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            
+            const nameVal = document.getElementById('nameInput').value.trim();
+            const emailVal = document.getElementById('emailInput').value.trim();
+            const passVal = document.getElementById('passwordInput').value.trim();
+
+            let isValid = true;
+
+            if (nameVal === '') {
+                setStatus(document.getElementById('nameInput'), document.getElementById('nameError'), true);
+                isValid = false;
+            } else {
+                setStatus(document.getElementById('nameInput'), document.getElementById('nameError'), false);
+            }
+
+            
+            if (!emailRegex.test(emailVal)) {
+                setStatus(document.getElementById('emailInput'), document.getElementById('emailError'), true);
+                isValid = false;
+            } else {
+                setStatus(document.getElementById('emailInput'), document.getElementById('emailError'), false);
+            }
+
+            if (passVal.length < 6) {
+                setStatus(document.getElementById('passwordInput'), document.getElementById('passError'), true);
+                isValid = false;
+            } else {
+                setStatus(document.getElementById('passwordInput'), document.getElementById('passError'), false);
+            }
+
+            if (isValid) {
+                successBanner.style.display = 'block';
+                form.reset(); 
+                
+                document.querySelectorAll('input').forEach(input => {
+                    input.classList.remove('success-border');
+                });
+                
+                setTimeout(() => {
+                    successBanner.style.display = 'none';
+                }, 3000);
+            } else {
+                successBanner.style.display = 'none';
+            }
+        });
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', function() {
+                this.classList.remove('error-border');
+                this.nextElementSibling.style.display = 'none';
+            });
+        });
+    </script>
+
+</body>
+</html>
